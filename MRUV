@@ -1,0 +1,30 @@
+print('\33[32mTODAS AS MEDIDAS DIGITADAS DEVEM ESTAR NO SISTEMA INTERNACIONAL DE UNIDADES DE MEDIDA (SI)\033[m')
+print('='*100)
+seleção = str(input('O que você deseja calcular? Posição final [S], Velocidade [V], Tempo [t] ou Posição inicial [So]: ')).strip().upper()[0:2]
+if seleção == 'S':
+    v = float(input('Digite a velocidade: '))
+    so = float(input('Digite a posição inicial: '))
+    t = float(input('Digite o intervalo de tempo: '))
+    s = so + v * t
+    print(f'A posição final é de {s} m')
+elif seleção == 'V':
+    s = float(input('Digite a posição final: '))
+    so = float(input('Digite a posição inicial: '))
+    t = float(input('Digite o intervalo de tempo: '))
+    v = (s - so) / t
+    print(f'A velocidade é {v} m/s')
+elif seleção == 'T':
+    s = float(input('Digite a posição final: '))
+    so = float(input('Digite a posição inicial: '))
+    v = float(input('Digite a velocidade: '))
+    t = (s - so) / v
+    print(f'O intervalo de tempo é {t} s')
+elif seleção == 'SO':
+    s = float(input('Digite a posição final: '))
+    v = float(input('Digite a velocidade: '))
+    t = float(input('Digite o intervalo de tempo: '))
+    so = s - v * t
+    print(f'A posição inicial é {so} m')
+else:
+    print('Opção inexistente, tente novamente: ')
+
