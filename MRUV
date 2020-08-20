@@ -1,30 +1,29 @@
-print('\33[32mTODAS AS MEDIDAS DIGITADAS DEVEM ESTAR NO SISTEMA INTERNACIONAL DE UNIDADES DE MEDIDA (SI)\033[m')
-print('='*100)
-seleção = str(input('O que você deseja calcular? Posição final [S], Velocidade [V], Tempo [t] ou Posição inicial [So]: ')).strip().upper()[0:2]
-if seleção == 'S':
-    v = float(input('Digite a velocidade: '))
-    so = float(input('Digite a posição inicial: '))
-    t = float(input('Digite o intervalo de tempo: '))
-    s = so + v * t
-    print(f'A posição final é de {s} m')
-elif seleção == 'V':
-    s = float(input('Digite a posição final: '))
-    so = float(input('Digite a posição inicial: '))
-    t = float(input('Digite o intervalo de tempo: '))
-    v = (s - so) / t
-    print(f'A velocidade é {v} m/s')
-elif seleção == 'T':
-    s = float(input('Digite a posição final: '))
-    so = float(input('Digite a posição inicial: '))
-    v = float(input('Digite a velocidade: '))
-    t = (s - so) / v
-    print(f'O intervalo de tempo é {t} s')
-elif seleção == 'SO':
-    s = float(input('Digite a posição final: '))
-    v = float(input('Digite a velocidade: '))
-    t = float(input('Digite o intervalo de tempo: '))
-    so = s - v * t
-    print(f'A posição inicial é {so} m')
+print('='*28)
+print('CÁLCULO DA VELOCIDADE MÉDIA')
+print('='*28)
+print('ORIENTAÇÕES:\n'
+      '1) Utilizar os valores com unidades de medidas no SI.\n'
+      '2) Colocar ponto de interrogação (?) na grandeza que se deseja calcular.')
+print()
+vm = str(input(f'Digite a velocidade média em m/s: ')).strip()
+ds = str(input(f'Digite a variação da posição em m: ')).strip()
+dt = str(input(f'Digite a variação do tempo em s: ')).strip()
+
+if vm == '?':
+    ds = float(ds)
+    dt = float(dt)
+    vm = ds / dt
+    print(f'A velocidade média é de {vm} m/s')
+elif ds == '?':
+    vm = float(vm)
+    dt = float(dt)
+    ds = vm * dt
+    print(f'A variação da posição é de {ds} m')
+elif dt == '?':
+    vm = float(vm)
+    ds = float(ds)
+    dt = ds / vm
+    print(f'O intervalo de tempo é de {dt} s')
 else:
-    print('Opção inexistente, tente novamente: ')
+    print('ERRO na digitação dos dados:')
 
