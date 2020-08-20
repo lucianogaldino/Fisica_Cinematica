@@ -12,6 +12,7 @@ seleção = str(input('O que você deseja calcular? '
                     'Posição final [s], Posição inicial [so], Deslocamento (d),\n Velocidade [v],'
                     ' Velocidade inicial [vo], Tempo [t], Aceleração [a]: ')).strip().upper()[0:2]
 
+# Cálculo da posição final
 if seleção == 'S':
     var = str(input('Você tem o valor do tempo? [S] ou [N]? ')).strip().upper()[0:2]
     if var == 'S':
@@ -30,6 +31,8 @@ if seleção == 'S':
         print('Opção inválida, tente novamente!')
         sleep(2)
     print(f'A posição final é de {s} m')
+
+# Cálculo da posição inicial
 elif seleção == 'SO':
     var = str(input('Você tem o valor do tempo? [S] ou [N]? ')).strip().upper()[0:2]
     if var == 'S':
@@ -48,6 +51,8 @@ elif seleção == 'SO':
         print('Opção inválida, tente novamente!')
         sleep(2)
     print(f'A posição inicial é de {so} m')
+
+#Cálculo do deslocamento
 elif seleção == 'D':
     var = str(input('Você tem o valor do tempo? [S] ou [N]? ')).strip().upper()[0:2]
     if var == 'S':
@@ -64,6 +69,8 @@ elif seleção == 'D':
         print('Opção inválida, tente novamente!')
         sleep(2)
     print(f'O deslocamento é de {d} m')
+
+# Cálculo da Velocidade final
 elif seleção == 'V':
     var = str(input('Você tem o valor do tempo? [S] ou [N]? ')).strip().upper()[0:2]
     if var == 'S':
@@ -85,15 +92,17 @@ elif seleção == 'V':
         sleep(2)
     print(f'A velocidade final é de {v} m/s')
 
+# Cálculo da Velocidade Inicial
 elif seleção == 'VO':
     var = str(input('Você tem o valor do tempo? [S] ou [N]? ')).strip().upper()[0:2]
     if var == 'S':
         var2 = str(input('Você tem o valor do deslocamento? [S] ou [N]? ')).strip().upper()[0:2]
         if var2 =='S':
-            d = float(input('Digite o deslocamento: '))
+            s = float(input('Digite a posição final: '))
+            so = float(input('Digite a posição inicial: '))
             a = float(input('Digite a aceleração: '))
             t = float(input('Digite o intervalo de tempo: '))
-            vo = d / t - a * t / 2
+            vo = (s - so) / t - a * t / 2
         elif var2 == 'N':
             v = float(input('Digite a velocidade final: '))
             a = float(input('Digite a aceleração: '))
@@ -116,6 +125,7 @@ elif seleção == 'VO':
         sleep(2)
     print(f'A velocidade inicial é de {vo} m/s')
 
+#Cálculo do tempo
 elif seleção == 'T':
     var2 = str(input('Você tem o valor do deslocamento? [S] ou [N]? ')).strip().upper()[0:2]
     if var2 == 'S':
@@ -145,6 +155,36 @@ elif seleção == 'T':
         print(f'o tempo é {t} s')
     else:
         print(f'Erro nos valores atribuídos. Digite novamente!')
+
+# Cálculo da aceleração
+elif seleção == 'A':
+    var = str(input('Você tem o valor do tempo? [S] ou [N]? ')).strip().upper()[0:2]
+    if var == 'S':
+        var2 = str(input('Você tem o valor do deslocamento? [S] ou [N]? ')).strip().upper()[0:2]
+        if var2 =='S':
+            s = float(input('Digite a posição final: '))
+            so = float(input('Digite a posição inicial: '))
+            vo = float(input('Digite a velocidade inicial: '))
+            t = float(input('Digite o intervalo de tempo: '))
+            a = (s - so - vo*t)*2 / t**2
+        elif var2 == 'N':
+            v = float(input('Digite a velocidade final: '))
+            vo = float(input('Digite a velocidade inicial: '))
+            t = float(input('Digite o intervalo de tempo: '))
+            a = (v - vo) / t
+        else:
+            print('Opção inválida, tente novamente!')
+            sleep(2)
+    elif var == 'N':
+        v = float(input('Digite a velocidade final: '))
+        vo = float(input('Digite a velocidade inicial: '))
+        d = float(input('Digite o deslocamento: '))
+        a = (v**2 - vo**2)/(2*d)
+    else:
+        print('Opção inválida, tente novamente!')
+        sleep(2)
+    print(f'A aceleração é de {a} m/s2')
+
 else:
     print('Opção inválida, tente novamente!')
     sleep(2)
