@@ -1,2 +1,2 @@
 # Fisica_Cinematica
- Software para cálculos referentes ao movimento retilíneo.
+Módulo para calcular qualquer variável referente à cinemática do movimento retilíneo.
