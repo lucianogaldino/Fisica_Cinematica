@@ -7,8 +7,10 @@ print('ORIENTAÇÕES:\n'
       '2) Colocar a sigla que representa a grandeza que se deseja calcular')
 print()
 opcao = str(input('Indique a que se refere o seu cálculo: '
-                    'Velocidade média[vm], Aceleração média [am],\n Movimento Uniforme[mu],'
-                    'Movimento uniformemente variado[muv]: ')).strip().upper()[0:3]
+                    'Velocidade Média[vm], Aceleração Média [am],\n Movimento Uniforme[mu],'
+                    'Movimento Uniformemente Variado[muv]: ')).strip().upper()[0:3]
+
+#CÁLCULO DA VELOCIDADE MÉDIA
 if opcao == 'VM':
     selecao = str(input('Qual grandeza deseja calcular: Velocidade média[vm], variação do espaço[s] ou'
                         'intervalo de tempo[t]? ')).strip().upper()[0:2]
@@ -30,9 +32,32 @@ if opcao == 'VM':
     else:
         print('ERRO na digitação dos dados:')
         sleep(2)
-        
+
+#CÁLCULO DA ACELERAÇÃO
+elif opcao == 'AM':
+    selecao = str(input('Qual grandeza deseja calcular: aceleração média[am], variação da velocidade[v] ou'
+                        'intervalo de tempo[t]? ')).strip().upper()[0:2]
+    if selecao == 'AM':
+        dv = float(input('Digite a variação da velocidade em m/s: '))
+        dt = float(input('Digite o intervalo de tempo em s: '))
+        am = dv / dt
+        print(f'A aceleração média é de {am} m/s2')
+    elif selecao == 'V':
+        am = float(input('Digite a aceleração média em m/s2: '))
+        dt = float(input('Digite o intervalo de tempo em s: '))
+        dv = am * dt
+        print(f'A variação da velocidade é de {dv} m/s')
+    elif selecao == 'T':
+        am = float(input('Digite a aceleração média em m/s2: '))
+        dv = float(input('Digite a variação da velocidade em m/s: '))
+        dt = dv / am
+        print(f'O intervalo de tempo é de {dt} s')
+    else:
+        print('ERRO na digitação dos dados:')
+        sleep(2)
+
 #CÁLCULO DO MOVIMENTO RETÍLINEO UNIFORMEMENTE VARIADO
-if opcao == 'MUV':
+elif opcao == 'MUV':
     selecao = str(input('O que você deseja calcular? '
                         'Posição final [s], Posição inicial [so], Deslocamento (d),\n Velocidade [v],'
                         ' Velocidade inicial [vo], Tempo [t], Aceleração [a]: ')).strip().upper()[0:2]
@@ -213,7 +238,6 @@ if opcao == 'MUV':
     else:
         print('Opção inválida, tente novamente!')
         sleep(2)
-        
 else:
     print('Opção inválida, tente novamente!')
     sleep(2)
