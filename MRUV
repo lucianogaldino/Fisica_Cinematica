@@ -213,6 +213,7 @@ if opcao == 'MUV':
     else:
         print('Opção inválida, tente novamente!')
         sleep(2)
+        
 else:
     print('Opção inválida, tente novamente!')
     sleep(2)
