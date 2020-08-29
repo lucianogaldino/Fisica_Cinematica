@@ -1,2 +1,2 @@
-# Fisica_Cinematica
-Módulo para calcular qualquer variável referente à cinemática do movimento retilíneo.
+# Projeto Fisica_Cinematica
+Funções, módulos e pacotes na área de Física cinemática.
