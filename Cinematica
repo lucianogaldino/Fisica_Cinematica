@@ -33,7 +33,7 @@ if opcao == 'VM':
         print('ERRO na digitação dos dados:')
         sleep(2)
 
-#CÁLCULO DA ACELERAÇÃO
+#CÁLCULO DA ACELERAÇÃO MÉDIA
 elif opcao == 'AM':
     selecao = str(input('Qual grandeza deseja calcular: aceleração média[am], variação da velocidade[v] ou'
                         'intervalo de tempo[t]? ')).strip().upper()[0:2]
