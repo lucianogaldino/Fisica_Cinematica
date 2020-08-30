@@ -15,7 +15,7 @@ def velmed(vm, ds, dt):
         dt = ds / vm
         print(f'O intervalo de tempo é de {dt} s')
     else:
-        print('ERRO na digitação dos dados!')
+        print('ERRO na digitação dos dados! Tente novamente.')
         sleep(1)
 
 def acelmed(am, dv, dt):
@@ -35,9 +35,37 @@ def acelmed(am, dv, dt):
         dt = dv / am
         print(f'O intervalo de tempo é de {dt} s')
     else:
-        print('ERRO na digitação dos dados!')
+        print('ERRO na digitação dos dados! Tente novamente.')
         sleep(1)
 
+def mru(s, so, v, t):
+    if s == '?':
+        so = float(so)
+        v = float(v)
+        t = float(t)
+        s = so + v * t
+        print(f'A posição final é de {s} m')
+    elif so == '?':
+        s = float(s)
+        v = float(v)
+        t = float(t)
+        so = s - v * t
+        print(f'A posição inicial é {so} m')
+    elif v == '?':
+        s = float(s)
+        so = float(so)
+        t = float(t)
+        v = (s - so) / t
+        print(f'A velocidade é {v} m/s')
+    elif t == '?':
+        s = float(s)
+        so = float(so)
+        v = float(v)
+        t = (s - so) / v
+        print(f'O intervalo de tempo é {t} s')
+    else:
+        print('ERRO na digitação dos dados! Tente novamente.')
+        sleep(1)
 
 from time import sleep
 print('='*25)
@@ -48,8 +76,8 @@ print('ORIENTAÇÕES:\n'
       '2) Colocar a sigla que representa a grandeza que se deseja calcular')
 print()
 opcao = str(input('Indique a que se refere o seu cálculo: '
-                    'Velocidade Média[vm], Aceleração Média [am],\n Movimento Uniforme[mu],'
-                    'Movimento Uniformemente Variado[muv]: ')).strip().upper()[0:3]
+                    'Velocidade Média[vm], Aceleração Média [am],\n Movimento Retilíneo Uniforme[mru],'
+                    'Movimento Retilíneo Uniformemente Variado[mruv]: ')).strip().upper()[0:4]
 
 #CÁLCULO DA VELOCIDADE MÉDIA
 if opcao == 'VM':
@@ -64,39 +92,14 @@ elif opcao == 'AM':
             str(input(f'Digite a variação do tempo em s: ')).strip())
 
 #CÁLCULO DO MOVIMENTO RETILÍNEO UNIFORME
-elif opcao == 'MU':
-    selecao = str(input(
-        'Qual grandeza você deseja calcular? Posição final [S], Velocidade [V], Tempo [t] ou Posição inicial [So]: ')).strip().upper()[
-              0:2]
-    if selecao == 'S':
-        so = float(input('Digite a posição inicial: '))
-        v = float(input('Digite a velocidade: '))
-        t = float(input('Digite o intervalo de tempo: '))
-        s = so + v * t
-        print(f'A posição final é de {s} m')
-    elif selecao == 'V':
-        s = float(input('Digite a posição final: '))
-        so = float(input('Digite a posição inicial: '))
-        t = float(input('Digite o intervalo de tempo: '))
-        v = (s - so) / t
-        print(f'A velocidade é {v} m/s')
-    elif selecao == 'T':
-        s = float(input('Digite a posição final: '))
-        so = float(input('Digite a posição inicial: '))
-        v = float(input('Digite a velocidade: '))
-        t = (s - so) / v
-        print(f'O intervalo de tempo é {t} s')
-    elif selecao == 'SO':
-        s = float(input('Digite a posição final: '))
-        v = float(input('Digite a velocidade: '))
-        t = float(input('Digite o intervalo de tempo: '))
-        so = s - v * t
-        print(f'A posição inicial é {so} m')
-    else:
-        print('Opção inexistente, tente novamente: ')
+elif opcao == 'MRU':
+    mru(str(input(f'Digite a posição final em m: ')).strip(),
+        str(input(f'Digite a posição inicial em m: ')).strip(),
+        str(input(f'Digite a velocidade em m/s: ')).strip(),
+        str(input(f'Digite a varição do tempo em s: ')))
 
 #CÁLCULO DO MOVIMENTO RETÍLINEO UNIFORMEMENTE VARIADO
-elif opcao == 'MUV':
+elif opcao == 'MRUV':
     selecao = str(input('O que você deseja calcular? '
                         'Posição final [s], Posição inicial [so], Deslocamento (d),\n Velocidade [v],'
                         ' Velocidade inicial [vo], Tempo [t], Aceleração [a]: ')).strip().upper()[0:2]
