@@ -1,36 +1,275 @@
-print('='*40)
-print('CÁLCULO DO MOVIMENTO RETILÍNEO UNIFORME')
-print('='*40)
+from time import sleep
+print('='*25)
+print('CINECALC')
+print('='*25)
 print('ORIENTAÇÕES:\n'
       '1) Utilizar os valores com unidades de medidas no SI.\n'
       '2) Colocar a sigla que representa a grandeza que se deseja calcular')
 print()
+opcao = str(input('Indique a que se refere o seu cálculo: '
+                    'Velocidade Média[vm], Aceleração Média [am],\n Movimento Uniforme[mu],'
+                    'Movimento Uniformemente Variado[muv]: ')).strip().upper()[0:3]
 
+#CÁLCULO DA VELOCIDADE MÉDIA
+if opcao == 'VM':
+    selecao = str(input('Qual grandeza deseja calcular: Velocidade média[vm], variação do espaço[s] ou'
+                        'intervalo de tempo[t]? ')).strip().upper()[0:2]
+    if selecao == 'VM':
+        ds = float(input('Digite a variação da posição em m: '))
+        dt = float(input('Digite o intervalo de tempo em s: '))
+        vm = ds / dt
+        print(f'A velocidade média é de {vm} m/s')
+    elif selecao == 'S':
+        vm = float(input('Digite a velocidade média em m/s: '))
+        dt = float(input('Digite o intervalo de tempo em s: '))
+        ds = vm * dt
+        print(f'A variação da posição é de {ds} m')
+    elif selecao == 'T':
+        vm = float(input('Digite a velocidade média em m/s: '))
+        ds = float(input('Digite a variação da posição em m: '))
+        dt = ds / vm
+        print(f'O intervalo de tempo é de {dt} s')
+    else:
+        print('ERRO na digitação dos dados:')
+        sleep(2)
 
-seleção = str(input('O que você deseja calcular? Posição final [S], Velocidade [V], Tempo [t] ou Posição inicial [So]: ')).strip().upper()[0:2]
-if seleção == 'S':
-    so = float(input('Digite a posição inicial: '))
-    v = float(input('Digite a velocidade: '))
-    t = float(input('Digite o intervalo de tempo: '))
-    s = so + v * t
-    print(f'A posição final é de {s} m')
-elif seleção == 'V':
-    s = float(input('Digite a posição final: '))
-    so = float(input('Digite a posição inicial: '))
-    t = float(input('Digite o intervalo de tempo: '))
-    v = (s - so) / t
-    print(f'A velocidade é {v} m/s')
-elif seleção == 'T':
-    s = float(input('Digite a posição final: '))
-    so = float(input('Digite a posição inicial: '))
-    v = float(input('Digite a velocidade: '))
-    t = (s - so) / v
-    print(f'O intervalo de tempo é {t} s')
-elif seleção == 'SO':
-    s = float(input('Digite a posição final: '))
-    v = float(input('Digite a velocidade: '))
-    t = float(input('Digite o intervalo de tempo: '))
-    so = s - v * t
-    print(f'A posição inicial é {so} m')
+#CÁLCULO DA ACELERAÇÃO MÉDIA
+elif opcao == 'AM':
+    selecao = str(input('Qual grandeza deseja calcular: aceleração média[am], variação da velocidade[v] ou'
+                        'intervalo de tempo[t]? ')).strip().upper()[0:2]
+    if selecao == 'AM':
+        dv = float(input('Digite a variação da velocidade em m/s: '))
+        dt = float(input('Digite o intervalo de tempo em s: '))
+        am = dv / dt
+        print(f'A aceleração média é de {am} m/s2')
+    elif selecao == 'V':
+        am = float(input('Digite a aceleração média em m/s2: '))
+        dt = float(input('Digite o intervalo de tempo em s: '))
+        dv = am * dt
+        print(f'A variação da velocidade é de {dv} m/s')
+    elif selecao == 'T':
+        am = float(input('Digite a aceleração média em m/s2: '))
+        dv = float(input('Digite a variação da velocidade em m/s: '))
+        dt = dv / am
+        print(f'O intervalo de tempo é de {dt} s')
+    else:
+        print('ERRO na digitação dos dados:')
+        sleep(2)
+        
+#CÁLCULO DO MOVIMENTO RETILÍNEO UNIFORME
+elif opcao == 'MU':
+    seleção = str(input(
+        'Qual grandeza você deseja calcular? Posição final [S], Velocidade [V], Tempo [t] ou Posição inicial [So]: ')).strip().upper()[
+              0:2]
+    if seleção == 'S':
+        so = float(input('Digite a posição inicial: '))
+        v = float(input('Digite a velocidade: '))
+        t = float(input('Digite o intervalo de tempo: '))
+        s = so + v * t
+        print(f'A posição final é de {s} m')
+    elif seleção == 'V':
+        s = float(input('Digite a posição final: '))
+        so = float(input('Digite a posição inicial: '))
+        t = float(input('Digite o intervalo de tempo: '))
+        v = (s - so) / t
+        print(f'A velocidade é {v} m/s')
+    elif seleção == 'T':
+        s = float(input('Digite a posição final: '))
+        so = float(input('Digite a posição inicial: '))
+        v = float(input('Digite a velocidade: '))
+        t = (s - so) / v
+        print(f'O intervalo de tempo é {t} s')
+    elif seleção == 'SO':
+        s = float(input('Digite a posição final: '))
+        v = float(input('Digite a velocidade: '))
+        t = float(input('Digite o intervalo de tempo: '))
+        so = s - v * t
+        print(f'A posição inicial é {so} m')
+    else:
+        print('Opção inexistente, tente novamente: ')
+
+#CÁLCULO DO MOVIMENTO RETÍLINEO UNIFORMEMENTE VARIADO
+elif opcao == 'MUV':
+    selecao = str(input('O que você deseja calcular? '
+                        'Posição final [s], Posição inicial [so], Deslocamento (d),\n Velocidade [v],'
+                        ' Velocidade inicial [vo], Tempo [t], Aceleração [a]: ')).strip().upper()[0:2]
+
+    # Cálculo da posição final
+    if selecao == 'S':
+        var = str(input('Você tem o valor do tempo? [S] ou [N]? ')).strip().upper()[0:2]
+        if var == 'S':
+            so = float(input('Digite a posição inicial: '))
+            t = float(input('Digite o intervalo de tempo: '))
+            vo = float(input('Digite a velocidade inicial: '))
+            a = float(input('Digite a aceleração: '))
+            s = so + vo * t + a * t ** 2 / 2
+        elif var == 'N':
+            so = float(input('Digite a posição inicial: '))
+            v = float(input('Digite a velocidade final: '))
+            vo = float(input('Digite a velocidade inicial: '))
+            a = float(input('Digite a aceleração: '))
+            s = ((v ** 2 - vo ** 2) / (2 * a)) + so
+        else:
+            print('Opção inválida, tente novamente!')
+            sleep(2)
+        print(f'A posição final é de {s} m')
+
+    # Cálculo da posição inicial
+    elif selecao == 'SO':
+        var = str(input('Você tem o valor do tempo? [S] ou [N]? ')).strip().upper()[0:2]
+        if var == 'S':
+            s = float(input('Digite a posição final: '))
+            t = float(input('Digite o intervalo de tempo: '))
+            vo = float(input('Digite a velocidade inicial: '))
+            a = float(input('Digite a aceleração: '))
+            so = s - vo * t - a * t ** 2 / 2
+        elif var == 'N':
+            s = float(input('Digite a posição final: '))
+            v = float(input('Digite a velocidade final: '))
+            vo = float(input('Digite a velocidade inicial: '))
+            a = float(input('Digite a aceleração: '))
+            so = s - ((v ** 2 - vo ** 2) / (2 * a))
+        else:
+            print('Opção inválida, tente novamente!')
+            sleep(2)
+        print(f'A posição inicial é de {so} m')
+
+    # Cálculo do deslocamento
+    elif selecao == 'D':
+        var = str(input('Você tem o valor do tempo? [S] ou [N]? ')).strip().upper()[0:2]
+        if var == 'S':
+            vo = float(input('Digite a velocidade inicial: '))
+            t = float(input('Digite o intervalo de tempo: '))
+            a = float(input('Digite a aceleração: '))
+            d = vo * t + a * t ** 2 / 2
+        elif var == 'N':
+            v = float(input('Digite a velocidade final: '))
+            vo = float(input('Digite a velocidade inicial: '))
+            a = float(input('Digite a aceleração: '))
+            d = (v ** 2 - vo ** 2) / (2 * a)
+        else:
+            print('Opção inválida, tente novamente!')
+            sleep(2)
+        print(f'O deslocamento é de {d} m')
+
+    # Cálculo da Velocidade final
+    elif selecao == 'V':
+        var = str(input('Você tem o valor do tempo? [S] ou [N]? ')).strip().upper()[0:2]
+        if var == 'S':
+            vo = float(input('Digite a velocidade inicial: '))
+            a = float(input('Digite a aceleração: '))
+            t = float(input('Digite o intervalo de tempo: '))
+            v = vo + a * t
+        elif var == 'N':
+            vo = float(input('Digite a velocidade inicial: '))
+            a = float(input('Digite a aceleração: '))
+            d = float(input('Digite o deslocamento: '))
+            if vo ** 2 + 2 * a * d > 0:
+                v = (vo ** 2 + 2 * a * d) ** 0.5
+            else:
+                print('Erro em algum dado informado!')
+                v = str('Não pertence aos reais')
+        else:
+            print('Opção inválida, tente novamente!')
+            sleep(2)
+        print(f'A velocidade final é de {v} m/s')
+
+    # Cálculo da Velocidade Inicial
+    elif selecao == 'VO':
+        var = str(input('Você tem o valor do tempo? [S] ou [N]? ')).strip().upper()[0:2]
+        if var == 'S':
+            var2 = str(input('Você tem o valor do deslocamento? [S] ou [N]? ')).strip().upper()[0:2]
+            if var2 == 'S':
+                s = float(input('Digite a posição final: '))
+                so = float(input('Digite a posição inicial: '))
+                a = float(input('Digite a aceleração: '))
+                t = float(input('Digite o intervalo de tempo: '))
+                vo = (s - so) / t - a * t / 2
+            elif var2 == 'N':
+                v = float(input('Digite a velocidade final: '))
+                a = float(input('Digite a aceleração: '))
+                t = float(input('Digite o intervalo de tempo: '))
+                vo = v - a * t
+            else:
+                print('Opção inválida, tente novamente!')
+                sleep(2)
+        elif var == 'N':
+            v = float(input('Digite a velocidade final: '))
+            a = float(input('Digite a aceleração: '))
+            d = float(input('Digite o deslocamento: '))
+            if v ** 2 - 2 * a * d > 0:
+                vo = (v ** 2 - 2 * a * d) ** 0.5
+            else:
+                print('Erro em algum dado informado!')
+                vo = str('Não pertence aos reais')
+        else:
+            print('Opção inválida, tente novamente!')
+            sleep(2)
+        print(f'A velocidade inicial é de {vo} m/s')
+
+    # Cálculo do tempo
+    elif selecao == 'T':
+        var2 = str(input('Você tem o valor do deslocamento? [S] ou [N]? ')).strip().upper()[0:2]
+        if var2 == 'S':
+            s = float(input('Digite a posição final: '))
+            so = float(input('Digite a posição inicial: '))
+            vo = float(input('Digite a velocidade inicial '))
+            a = float(input('Digite a aceleração: '))
+            delta = vo ** 2 + 2 * a * (s - so)
+            if delta >= 0:
+                t1 = (-vo + (delta) ** 0.5) / a
+                t2 = (-vo - (delta) ** 0.5) / a
+                if t1 > t2:
+                    t = t1
+                else:
+                    t = t2
+            else:
+                t = -10  # Foi usado o -10 só para mostrar o erro no final, pois a raiz de delta foi qualquer valor negativo
+        elif var2 == 'N':
+            v = float(input('Digite a velocidade final: '))
+            vo = float(input('Digite velocidade inicial: '))
+            a = float(input('Digite a aceleração: '))
+            t = (v - vo) / a
+        else:
+            print('Opção inválida, tente novamente!')
+            sleep(2)
+        if t >= 0:
+            print(f'o tempo é {t} s')
+        else:
+            print(f'Erro nos valores atribuídos. Digite novamente!')
+
+    # Cálculo da aceleração
+    elif selecao == 'A':
+        var = str(input('Você tem o valor do tempo? [S] ou [N]? ')).strip().upper()[0:2]
+        if var == 'S':
+            var2 = str(input('Você tem o valor do deslocamento? [S] ou [N]? ')).strip().upper()[0:2]
+            if var2 == 'S':
+                s = float(input('Digite a posição final: '))
+                so = float(input('Digite a posição inicial: '))
+                vo = float(input('Digite a velocidade inicial: '))
+                t = float(input('Digite o intervalo de tempo: '))
+                a = (s - so - vo * t) * 2 / t ** 2
+            elif var2 == 'N':
+                v = float(input('Digite a velocidade final: '))
+                vo = float(input('Digite a velocidade inicial: '))
+                t = float(input('Digite o intervalo de tempo: '))
+                a = (v - vo) / t
+            else:
+                print('Opção inválida, tente novamente!')
+                sleep(2)
+        elif var == 'N':
+            v = float(input('Digite a velocidade final: '))
+            vo = float(input('Digite a velocidade inicial: '))
+            d = float(input('Digite o deslocamento: '))
+            a = (v ** 2 - vo ** 2) / (2 * d)
+        else:
+            print('Opção inválida, tente novamente!')
+            sleep(2)
+        print(f'A aceleração é de {a} m/s2')
+
+    else:
+        print('Opção inválida, tente novamente!')
+        sleep(2)
 else:
-    print('Opção inexistente, tente novamente: ')
+    print('Opção inválida, tente novamente!')
+    sleep(2)
