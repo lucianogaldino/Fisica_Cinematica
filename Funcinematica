@@ -1,3 +1,24 @@
+def velmed(vm, ds, dt):
+    if vm == '?':
+        ds = float(ds)
+        dt = float(dt)
+        vm = ds / dt
+        print(f'A velocidade média é de {vm} m/s')
+    elif ds == '?':
+        vm = float(vm)
+        dt = float(dt)
+        ds = vm * dt
+        print(f'A variação da posição é de {ds} m')
+    elif dt == '?':
+        vm = float(vm)
+        ds = float(ds)
+        dt = ds / vm
+        print(f'O intervalo de tempo é de {dt} s')
+    else:
+        print('ERRO na digitação dos dados:')
+        sleep(2)
+
+
 from time import sleep
 print('='*25)
 print('CINECALC')
@@ -12,26 +33,9 @@ opcao = str(input('Indique a que se refere o seu cálculo: '
 
 #CÁLCULO DA VELOCIDADE MÉDIA
 if opcao == 'VM':
-    selecao = str(input('Qual grandeza deseja calcular: Velocidade média[vm], variação do espaço[s] ou'
-                        'intervalo de tempo[t]? ')).strip().upper()[0:2]
-    if selecao == 'VM':
-        ds = float(input('Digite a variação da posição em m: '))
-        dt = float(input('Digite o intervalo de tempo em s: '))
-        vm = ds / dt
-        print(f'A velocidade média é de {vm} m/s')
-    elif selecao == 'S':
-        vm = float(input('Digite a velocidade média em m/s: '))
-        dt = float(input('Digite o intervalo de tempo em s: '))
-        ds = vm * dt
-        print(f'A variação da posição é de {ds} m')
-    elif selecao == 'T':
-        vm = float(input('Digite a velocidade média em m/s: '))
-        ds = float(input('Digite a variação da posição em m: '))
-        dt = ds / vm
-        print(f'O intervalo de tempo é de {dt} s')
-    else:
-        print('ERRO na digitação dos dados:')
-        sleep(2)
+    velmed(str(input(f'Digite a velocidade média em m/s: ')).strip(),
+           str(input(f'Digite a variação da posição em m: ')).strip(),
+           str(input(f'Digite a variação do tempo em s: ')).strip())
 
 #CÁLCULO DA ACELERAÇÃO MÉDIA
 elif opcao == 'AM':
