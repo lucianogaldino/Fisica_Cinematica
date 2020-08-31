@@ -219,12 +219,13 @@ def mruv(s, so, d, v, vo, a, t):
 
 
 from time import sleep
-print('='*25)
-print('CINECALC')
-print('='*25)
+print('='*20)
+print('------CINECALC------')
+print('='*20)
 print('ORIENTAÇÕES:\n'
       '1) Utilizar os valores com unidades de medidas no SI.\n'
-      '2) Colocar a sigla que representa a grandeza que se deseja calcular')
+      '2) Colocar a sigla que representa a qual tipo de movimento que você deseja calcular.\n'
+      '3) Colocar ponto ao invés de vírgula para representar as casas decimais dos algarismos')
 print()
 opcao = str(input('Indique a que se refere o seu cálculo: '
                     'Velocidade Média[vm], Aceleração Média [am],\n Movimento Retilíneo Uniforme[mru],'
